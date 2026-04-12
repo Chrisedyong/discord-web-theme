@@ -1,0 +1,22 @@
+.discord-profile-green .avatar__03630,
+.discord-profile-green .icon_bd6d20 {
+  border-color: var(--green-360) !important;
+  box-shadow: 0 0 0 2px rgba(87, 242, 135, 0.35) !important;
+}
+
+.theme-dark {
+  --discord-theme-gradient: linear-gradient(175deg, #0b1020 0%, #1b2440 75%, #334a7d 100%);
+  --background-base-lowest: var(--discord-theme-gradient) !important;
+  --background-base-lower: var(--discord-theme-gradient) !important;
+  --background-base-low: var(--discord-theme-gradient) !important;
+  --background-surface-high: var(--discord-theme-gradient) !important;
+  --background-surface-higher: var(--discord-theme-gradient) !important;
+  --background-surface-highest: var(--discord-theme-gradient) !important;
+  --chat-background-default: var(--discord-theme-gradient) !important;
+}
+
+html,
+body,
+[class*="appMount"] {
+  background: linear-gradient(175deg, #0b1020 0%, #1b2440 75%, #334a7d 100%) !important;
+}

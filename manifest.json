@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Discord Theme Toggle",
+  "version": "1.0.0",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://discord.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "styles/blue.css",
+        "styles/purple.css",
+        "styles/emerald.css",
+        "styles/sunset.css",
+        "styles/rose.css",
+        "styles/gold.css",
+        "styles/ocean.css",
+        "styles/midnight.css"
+      ],
+      "matches": ["https://discord.com/*"]
+    }
+  ]
+}

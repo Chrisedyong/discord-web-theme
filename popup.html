@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Discord Theme Switcher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 12px;
+      width: 220px;
+    }
+
+    .row {
+      margin-bottom: 12px;
+    }
+
+    select {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+
+    .status {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <label>
+      <input type="checkbox" id="themeEnabled" />
+      Enable theme
+    </label>
+  </div>
+
+  <div class="row">
+    <label for="themeName">Theme</label>
+    <select id="themeName">
+      <option value="blue">Blue</option>
+      <option value="purple">Purple</option>
+      <option value="emerald">Emerald</option>
+      <option value="sunset">Sunset</option>
+      <option value="rose">Rose</option>
+      <option value="gold">Gold</option>
+      <option value="ocean">Ocean</option>
+      <option value="midnight">Midnight</option>
+    </select>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
