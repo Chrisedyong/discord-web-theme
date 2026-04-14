@@ -2,36 +2,66 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>Discord Theme Switcher</title>
+  <title>Discord Theme</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 12px;
-      width: 220px;
+      width: 260px;
+      background: #111827;
+      color: white;
+    }
+
+    h3 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
     }
 
     .row {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
-    select {
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    select,
+    input[type="number"],
+    input[type="color"] {
       width: 100%;
-      padding: 8px;
       box-sizing: border-box;
+      padding: 6px;
+      border-radius: 8px;
+      border: none;
+      background: #1f2937;
+      color: white;
     }
 
-    .status {
-      font-size: 12px;
-      opacity: 0.8;
+    input[type="checkbox"] {
+      transform: scale(1.15);
+    }
+
+    #customSection {
+      padding-top: 6px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="row">
-    <label>
-      <input type="checkbox" id="themeEnabled" />
-      Enable theme
-    </label>
+  <h3>Discord Theme</h3>
+
+  <div class="row toggle-row">
+    <label for="themeEnabled" style="margin-bottom:0;">Enable Theme</label>
+    <input type="checkbox" id="themeEnabled" />
   </div>
 
   <div class="row">
@@ -45,7 +75,40 @@
       <option value="gold">Gold</option>
       <option value="ocean">Ocean</option>
       <option value="midnight">Midnight</option>
+      <option value="custom">Custom</option>
     </select>
+  </div>
+
+  <div id="customSection">
+    <div class="row">
+      <label for="gradientAngle">Gradient Angle</label>
+      <input id="gradientAngle" type="number" min="0" max="360" value="175" />
+    </div>
+
+    <div class="row">
+      <label for="color1">Color 1</label>
+      <input id="color1" type="color" value="#1b2f5b" />
+    </div>
+
+    <div class="row">
+      <label for="color2">Color 2</label>
+      <input id="color2" type="color" value="#244a86" />
+    </div>
+
+    <div class="row">
+      <label for="color3">Color 3</label>
+      <input id="color3" type="color" value="#356b94" />
+    </div>
+
+    <div class="row">
+      <label for="spoilerHidden">Spoiler Hidden</label>
+      <input id="spoilerHidden" type="color" value="#5f8fd6" />
+    </div>
+
+    <div class="row">
+      <label for="spoilerHover">Spoiler Hover</label>
+      <input id="spoilerHover" type="color" value="#3f6fb8" />
+    </div>
   </div>
 
   <script src="popup.js"></script>
