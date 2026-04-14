@@ -7,7 +7,7 @@
     body {
       font-family: Arial, sans-serif;
       margin: 12px;
-      width: 260px;
+      width: 280px;
       background: #111827;
       color: white;
     }
@@ -18,7 +18,7 @@
     }
 
     .row {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .toggle-row {
@@ -49,8 +49,25 @@
       transform: scale(1.15);
     }
 
+    input[type="range"] {
+      width: 100%;
+    }
+
+    .range-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .range-wrap span {
+      min-width: 44px;
+      text-align: right;
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
     #customSection {
-      padding-top: 6px;
+      padding-top: 10px;
       border-top: 1px solid rgba(255,255,255,0.12);
       margin-top: 10px;
     }
@@ -91,8 +108,24 @@
     </div>
 
     <div class="row">
+      <label for="color1Opacity">Color 1 Opacity</label>
+      <div class="range-wrap">
+        <input id="color1Opacity" type="range" min="0" max="100" value="100" />
+        <span id="color1OpacityValue">100%</span>
+      </div>
+    </div>
+
+    <div class="row">
       <label for="color2">Color 2</label>
       <input id="color2" type="color" value="#244a86" />
+    </div>
+
+    <div class="row">
+      <label for="color2Opacity">Color 2 Opacity</label>
+      <div class="range-wrap">
+        <input id="color2Opacity" type="range" min="0" max="100" value="100" />
+        <span id="color2OpacityValue">100%</span>
+      </div>
     </div>
 
     <div class="row">
@@ -101,13 +134,11 @@
     </div>
 
     <div class="row">
-      <label for="spoilerHidden">Spoiler Hidden</label>
-      <input id="spoilerHidden" type="color" value="#5f8fd6" />
-    </div>
-
-    <div class="row">
-      <label for="spoilerHover">Spoiler Hover</label>
-      <input id="spoilerHover" type="color" value="#3f6fb8" />
+      <label for="color3Opacity">Color 3 Opacity</label>
+      <div class="range-wrap">
+        <input id="color3Opacity" type="range" min="0" max="100" value="100" />
+        <span id="color3OpacityValue">100%</span>
+      </div>
     </div>
   </div>
 

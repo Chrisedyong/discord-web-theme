@@ -52,15 +52,86 @@ function getThemeFilePath(themeName) {
   else return "styles/blue.css";
 }
 
+function clamp(n, min, max) {
+  return Math.max(min, Math.min(max, n));
+}
+
+function hexToRgb(hex) {
+  let h = (hex || "").replace("#", "").trim();
+
+  if (h.length === 3) {
+    h = h.split("").map(ch => ch + ch).join("");
+  }
+
+  if (h.length !== 6) {
+    return { r: 27, g: 47, b: 91 };
+  }
+
+  return {
+    r: parseInt(h.slice(0, 2), 16),
+    g: parseInt(h.slice(2, 4), 16),
+    b: parseInt(h.slice(4, 6), 16)
+  };
+}
+
+function rgbaFromHex(hex, opacityPercent) {
+  const { r, g, b } = hexToRgb(hex);
+  const a = clamp((Number(opacityPercent) || 100) / 100, 0, 1);
+  return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
+
+function mixRgb(a, b, ratio) {
+  const t = clamp(ratio, 0, 1);
+  return {
+    r: Math.round(a.r * (1 - t) + b.r * t),
+    g: Math.round(a.g * (1 - t) + b.g * t),
+    b: Math.round(a.b * (1 - t) + b.b * t)
+  };
+}
+
+function rgbToHex({ r, g, b }) {
+  const toHex = (n) => clamp(n, 0, 255).toString(16).padStart(2, "0");
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
+
+function deriveSpoilerColors(c1Hex, c2Hex, c3Hex) {
+  const c1 = hexToRgb(c1Hex);
+  const c2 = hexToRgb(c2Hex);
+  const c3 = hexToRgb(c3Hex);
+
+  // Weighted toward color2 because the gradient spends most of its visible area near it.
+  const base = {
+    r: Math.round(c1.r * 0.2 + c2.r * 0.6 + c3.r * 0.2),
+    g: Math.round(c1.g * 0.2 + c2.g * 0.6 + c3.g * 0.2),
+    b: Math.round(c1.b * 0.2 + c2.b * 0.6 + c3.b * 0.2)
+  };
+
+  const white = { r: 255, g: 255, b: 255 };
+  const black = { r: 0, g: 0, b: 0 };
+
+  const hidden = mixRgb(base, white, 0.22);
+  const hover = mixRgb(base, black, 0.18);
+
+  return {
+    hidden: rgbToHex(hidden),
+    hover: rgbToHex(hover)
+  };
+}
+
 function buildCustomCss(theme) {
   const angle = Number(theme.gradientAngle || 175);
+
   const c1 = theme.color1 || "#1b2f5b";
   const c2 = theme.color2 || "#244a86";
   const c3 = theme.color3 || "#356b94";
-  const spoilerHidden = theme.spoilerHidden || "#5f8fd6";
-  const spoilerHover = theme.spoilerHover || "#3f6fb8";
 
-  const gradient = `linear-gradient(${angle}deg, ${c1} 0%, ${c2} 75%, ${c3} 100%)`;
+  const c1Opacity = Number(theme.color1Opacity || 100);
+  const c2Opacity = Number(theme.color2Opacity || 100);
+  const c3Opacity = Number(theme.color3Opacity || 100);
+
+  const gradient = `linear-gradient(${angle}deg, ${rgbaFromHex(c1, c1Opacity)} 0%, ${rgbaFromHex(c2, c2Opacity)} 75%, ${rgbaFromHex(c3, c3Opacity)} 100%)`;
+
+  const spoiler = deriveSpoilerColors(c1, c2, c3);
 
   return `
 .discord-profile-green .avatar__03630,
@@ -78,8 +149,8 @@ function buildCustomCss(theme) {
   --background-surface-higher: var(--discord-theme-gradient) !important;
   --background-surface-highest: var(--discord-theme-gradient) !important;
   --chat-background-default: var(--discord-theme-gradient) !important;
-  --spoiler-hidden-background: ${spoilerHidden} !important;
-  --spoiler-hidden-background-hover: ${spoilerHover} !important;
+  --spoiler-hidden-background: ${spoiler.hidden} !important;
+  --spoiler-hidden-background-hover: ${spoiler.hover} !important;
 }
 
 html,
