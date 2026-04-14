@@ -13,6 +13,8 @@
   --background-surface-higher: var(--discord-theme-gradient) !important;
   --background-surface-highest: var(--discord-theme-gradient) !important;
   --chat-background-default: var(--discord-theme-gradient) !important;
+  --spoiler-hidden-background: #ee8bb8 !important;
+  --spoiler-hidden-background-hover: #c45288 !important;
 }
 
 html,
