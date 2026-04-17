@@ -71,6 +71,26 @@
       border-top: 1px solid rgba(255,255,255,0.12);
       margin-top: 10px;
     }
+
+    .button-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    button.secondary {
+      background: #374151;
+    }
   </style>
 </head>
 <body>
@@ -139,6 +159,10 @@
         <input id="color3Opacity" type="range" min="0" max="100" value="100" />
         <span id="color3OpacityValue">100%</span>
       </div>
+    </div>
+
+    <div class="row button-row">
+      <button id="randomizeButton" class="secondary" type="button">Randomize</button>
     </div>
   </div>
 
