@@ -20,5 +20,5 @@ Current behavior
 - content.js adds class discord-profile-green to <html> when an input is focused or has text
 
 Notes
-- Reload the extension after editing files
-- Refresh Discord after reloading
+- Please make sure your Discord on the default dark mode
+- Refresh Discord after reloading the extension
